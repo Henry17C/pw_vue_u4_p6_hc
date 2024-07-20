@@ -1,44 +1,60 @@
 vue <template>
-  
-    <div class="container">
-      <h1>Ingresar Estudiante</h1>
-      <form class="form-grid">
-    <label for="cedula">Cédula del estudiante</label>
-    <input type="text" id="cedula" name="cedula">
+  <div class="container">
+    <h1>Ingresar Estudiante</h1>
+    <form class="form-grid">
+      <label for="cedula">Cédula del estudiante</label>
+      <input v-model="cedula" type="text" id="cedula" name="cedula" />
 
-    <label for="nombre">Nombre del estudiante</label>
-    <input type="text" id="nombre" name="nombre">
+      <label for="nombre">Nombre del estudiante</label>
+      <input type="text" id="nombre" name="nombre" />
 
-    <label for="apellido">Apellido del estudiante</label>
-    <input type="text" id="apellido" name="apellido">
+      <label for="apellido">Apellido del estudiante</label>
+      <input type="text" id="apellido" name="apellido" />
 
-    <label for="fechaNacimiento">Fecha de Nacimiento del estudiante</label>
-    <input type="datetime-local" id="fechaNacimiento" name="fechaNacimiento">
+      <label for="fechaNacimiento">Fecha de Nacimiento del estudiante</label>
+      <input
+        type="datetime-local"
+        id="fechaNacimiento"
+        name="fechaNacimiento"
+      />
 
-    <label for="genero">Género del estudiante</label>
-    <select id="genero" name="genero">
+      <label for="genero">Género del estudiante</label>
+      <select id="genero" name="genero">
         <option value="" disabled selected>Seleccione un género</option>
         <option value="Masculino">Masculino</option>
         <option value="Femenino">Femenino</option>
         <option value="Otro">Otro</option>
-    </select>
+      </select>
 
-    <button type="submit">Actualizar</button>
+      <button type="submit">Actualizar</button>
 
-    <button type="submit">Buscar</button>
-</form>
-    </div>
-  
-  </template>
+      <button @click="cosultar" type="submit">Buscar</button>
+    </form>
+  </div>
+</template>
   
   <script>
-  export default {
-  
-  }
-  </script>
+  import { obtenerPorCedulaAxiosFacade, actualizarFacade } from '../clients/clientEstudiante.js'
+
+export default {
+
+  data() {
+    return{
+      cedula: null
+    }
+  },
+  methods: {
+    async cosultar() {
+      console.log(this.cedula);
+      const data= await obtenerPorCedulaAxiosFacade(this.cedula);
+      console.log(data);
+    },
+  },
+};
+</script>
   
   <style>
- .container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,4 +95,4 @@ select {
 .submit-btn:hover {
   background-color: #0056b3;
 }
-  </style>
+</style>
