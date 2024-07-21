@@ -1,57 +1,88 @@
-vue <template>
+<template>
   <div class="container">
     <h1>Ingresar Estudiante</h1>
-    <form class="form-grid">
+    <div class="form-grid" >
       <label for="cedula">Cédula del estudiante</label>
       <input v-model="cedula" type="text" id="cedula" name="cedula" />
 
       <label for="nombre">Nombre del estudiante</label>
-      <input type="text" id="nombre" name="nombre" />
+      <input v-model="nombre" type="text" id="nombre" name="nombre" />
 
       <label for="apellido">Apellido del estudiante</label>
-      <input type="text" id="apellido" name="apellido" />
+      <input v-model="apellido" type="text" id="apellido" name="apellido" />
 
       <label for="fechaNacimiento">Fecha de Nacimiento del estudiante</label>
       <input
+        v-model="fechaNacimiento"
         type="datetime-local"
         id="fechaNacimiento"
         name="fechaNacimiento"
       />
 
       <label for="genero">Género del estudiante</label>
-      <select id="genero" name="genero">
+      <select v-model="genero" id="genero" name="genero">
         <option value="" disabled selected>Seleccione un género</option>
         <option value="Masculino">Masculino</option>
         <option value="Femenino">Femenino</option>
         <option value="Otro">Otro</option>
       </select>
 
-      <button type="submit">Actualizar</button>
-
-      <button @click="cosultar" type="submit">Buscar</button>
-    </form>
+      <button @click="actualizar">Actualizar </button>
+      <button @click="consultar" type="button">Buscar</button>
+    </div>
   </div>
 </template>
-  
-  <script>
-  import { obtenerPorCedulaAxiosFacade, actualizarFacade } from '../clients/clientEstudiante.js'
+
+<script>
+import {
+  obtenerPorCedulaAxiosFacade,
+  actualizarFacade,
+} from "../clients/clientEstudiante.js";
 
 export default {
-
   data() {
-    return{
-      cedula: null
-    }
+    return {
+      cedula: null,
+      nombre: "",
+      apellido: "",
+      fechaNacimiento: "",
+      genero: "",
+    };
   },
   methods: {
-    async cosultar() {
-      console.log(this.cedula);
-      const data= await obtenerPorCedulaAxiosFacade(this.cedula);
+    async consultar() {
+      console.log("Ingresa a consultar");
+      console.log("cedu: " + this.cedula);
+
+      try {
+        const data = await obtenerPorCedulaAxiosFacade(this.cedula);
+        console.log(data);
+        // Asignar los datos al formulario
+        this.nombre = data.nombre;
+        this.apellido = data.apellido;
+        this.fechaNacimiento = data.fechaNacimiento;
+        this.genero = data.genero;
+      } catch (error) {
+        console.error("Error al consultar los datos del estudiante:", error);
+      }
+    },
+    async actualizar() {
+      console.log("Ingresa a actualizar");
+      const bodyEstudiante = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        fechaNacimiento: this.fechaNacimiento,
+        genero: this.genero,
+        cedula: this.cedula,
+      };
+
+      const data= await actualizarFacade(this.cedula, bodyEstudiante);
       console.log(data);
     },
   },
 };
 </script>
+
   
   <style>
 .container {
@@ -65,9 +96,9 @@ export default {
 
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Una columna */
-  gap: 15px; /* Espacio entre los elementos */
-  max-width: 600px; /* Ancho máximo del formulario */
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-width: 600px;
   width: 100%;
 }
 

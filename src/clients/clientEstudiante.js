@@ -37,10 +37,8 @@ const guardar = async (estudianteBody) => {
 
 const actualizar = async (cedula, estudianteBody) => {
 
-    const data = axios.put(`http://localhost:8080/API/v1.0/Matricula/estudiantes/${cedula}`, estudianteBody).then(r => r.data)
-
-
-    console.log(data)
+    const data = axios.put(`http://localhost:8080/API/v1.0/Matricula/estudiantes/cedula/${cedula}`, estudianteBody).then(r => r.data)
+    console.log("actualizar FACADE")
     return data;
 
 }
@@ -83,7 +81,7 @@ export const obtenerPorCedulaAxiosFacade = async (cedula) => {
 
 export const guardarFacade = async (estudianteBody) => {
     
-    return await guardarFacade(estudianteBody);
+    return await guardar(estudianteBody);
 }
 
 

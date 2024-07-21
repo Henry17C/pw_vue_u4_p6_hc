@@ -1,10 +1,11 @@
 vue <template>
   
-  <h1>Pagina de Estudiantes</h1>
+ 
    
-    <ActualizarEstudiante />
-    <EliminarEstudiante />
-<!--  <InsertarEstudiante /> -->
+     
+   <!-- <ActualizarEstudiante /> >-->
+   <!--  <EliminarEstudiante />-->
+ <InsertarEstudiante /> 
 
 
 </template>
