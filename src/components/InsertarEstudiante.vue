@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Ingresar Estudiante</h1>
-    <div class="form-grid" >
+    <div class="form-grid">
       <label for="cedula">Cédula del estudiante</label>
       <input v-model="cedula" type="text" id="cedula" name="cedula" />
 
@@ -27,22 +27,19 @@
         <option value="Otro">Otro</option>
       </select>
 
-      <button @click="actualizar">Actualizar </button>
-      <button @click="consultar" type="button">Buscar</button>
+      <button @click="guardar">Guardar</button>
+ 
     </div>
   </div>
 </template>
 
 <script>
-import {
-  obtenerPorCedulaAxiosFacade,
-  actualizarFacade,
-} from "../clients/clientEstudiante.js";
+import { guardarFacade } from "../clients/clientEstudiante.js";
 
 export default {
   data() {
     return {
-      cedula: null,
+      cedula: "",
       nombre: "",
       apellido: "",
       fechaNacimiento: "",
@@ -50,35 +47,22 @@ export default {
     };
   },
   methods: {
-    async consultar() {
-      console.log("Ingresa a consultar");
-      console.log("cedu: " + this.cedula);
-
-      try {
-        const data = await obtenerPorCedulaAxiosFacade(this.cedula);
-        console.log(data);
-        // Asignar los datos al formulario
-        this.nombre = data.nombre;
-        this.apellido = data.apellido;
-        this.fechaNacimiento = data.fechaNacimiento;
-        this.genero = data.genero;
-      } catch (error) {
-        console.error("Error al consultar los datos del estudiante:", error);
-      }
-    },
-    async actualizar() {
-      console.log("Ingresa a actualizar");
+    async guardar() {
       const bodyEstudiante = {
+        cedula: this.cedula,
         nombre: this.nombre,
         apellido: this.apellido,
         fechaNacimiento: this.fechaNacimiento,
         genero: this.genero,
-        cedula: this.cedula,
       };
-
-      const data= await actualizarFacade(this.cedula, bodyEstudiante);
-      console.log(data);
+      try {
+        const data = await guardarFacade(bodyEstudiante);
+        console.log(data + "Guardado");
+      } catch (error) {
+        console.error(error);
+      }
     },
+  
   },
 };
 </script>

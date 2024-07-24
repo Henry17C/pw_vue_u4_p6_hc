@@ -57,7 +57,7 @@ const actualizarParcial = async (cedula, estudianteBody) => {
 
 
 const elminar = async (cedula) => {
-    axios.delete(`http://localhost:8080/API/v1.0/Matricula/estudiantes/${cedula}`).then(r => r.data)
+    const data = axios.delete(`http://localhost:8080/API/v1.0/Matricula/estudiantes/cedula/${cedula}`).then(r => r.data)
     console.log(data)
     return data;
 
@@ -80,7 +80,7 @@ export const obtenerPorCedulaAxiosFacade = async (cedula) => {
 
 
 export const guardarFacade = async (estudianteBody) => {
-    
+
     return await guardar(estudianteBody);
 }
 

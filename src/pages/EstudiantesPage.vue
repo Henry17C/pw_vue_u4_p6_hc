@@ -1,30 +1,23 @@
 vue <template>
-  
- 
-   
-     
-   <!-- <ActualizarEstudiante /> >-->
-   <!--  <EliminarEstudiante />-->
- <InsertarEstudiante /> 
+  <InsertarEstudiante />
 
+  <ActualizarEstudiante />
 
+  <EliminarEstudiante />
 </template>
 
 <script>
- import InsertarEstudiante from '../components/InsertarEstudiante.vue'
- import ActualizarEstudiante from '../components/ActualizarEstudiante.vue'
- import EliminarEstudiante from '../components/EliminarEstudiante.vue'
+import InsertarEstudiante from "../components/InsertarEstudiante.vue";
+import ActualizarEstudiante from "../components/ActualizarEstudiante.vue";
+import EliminarEstudiante from "../components/EliminarEstudiante.vue";
 export default {
-    components: {
+  components: {
     InsertarEstudiante,
     ActualizarEstudiante,
-    EliminarEstudiante
-  }
-   
-
-}
+    EliminarEstudiante,
+  },
+};
 </script>
 
 <style>
-
 </style>
