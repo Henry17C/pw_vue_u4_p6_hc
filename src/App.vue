@@ -1,17 +1,26 @@
 <template>
  
- <PaginaEstudiantes />
+
+
+  <!-- Este es un comentario en HTML
+  <BienvenidaPage />  Ya no es neceraio ya que el router carga la pagina de inicio
+
+
+-->
+
+  <router-view/>
+
 </template>
 
 <script>
-import PaginaEstudiantes from './pages/EstudiantesPage.vue'
+import BienvenidaPage from "./pages/BienvenidaPage.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    PaginaEstudiantes
-  }
-}
+    BienvenidaPage,
+  },
+};
 </script>
 
 <style>
