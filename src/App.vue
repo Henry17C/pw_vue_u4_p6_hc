@@ -1,24 +1,22 @@
 <template>
- 
-
-
   <!-- Este es un comentario en HTML
   <BienvenidaPage />  Ya no es neceraio ya que el router carga la pagina de inicio
-
-
 -->
+  <NavBar/>
 
-  <router-view/>
+  <router-view />
+
 
 </template>
 
 <script>
 import BienvenidaPage from "./pages/BienvenidaPage.vue";
-
+import NavBar from "../src/components/NavBar.vue";
 export default {
   name: "App",
   components: {
     BienvenidaPage,
+    NavBar,
   },
 };
 </script>

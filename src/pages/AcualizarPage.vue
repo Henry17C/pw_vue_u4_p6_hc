@@ -70,6 +70,16 @@
         this.genero = data.genero;
       },
     },
+
+    created(){
+      console.log(this.$route)
+      const vari= this.$route.params.cedula;
+      if(vari !== 'vacio'){
+        this.cedula= vari;
+        this.consultar();
+      }
+      
+    }
   
   }
   </script>

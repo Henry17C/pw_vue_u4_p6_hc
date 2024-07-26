@@ -69,9 +69,15 @@ export default {
       this.fechaNacimiento = data.fechaNacimiento;
       this.genero = data.genero;
     },
+
+  
+
   },
 
-}
+
+
+
+};
 </script>
 
 <style>

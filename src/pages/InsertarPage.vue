@@ -75,7 +75,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding: 20px;
+
+    
   }
   
   .form-grid {
